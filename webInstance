@@ -1,0 +1,41 @@
+package scraper;
+
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class webInstance {
+	String page;
+	ChromeDriver driver;
+	parse file;
+	
+	public webInstance(String url) {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\tavom\\Desktop\\chromedriver.exe");
+		driver = new ChromeDriver();
+
+		driver.get(url);
+	}
+
+
+	public void getHTML() {
+		WebElement staticPage = driver.findElement(By.tagName("body"));
+		page = (staticPage.getText());
+		
+		try {
+			PrintWriter out = new PrintWriter("C:\\Users\\tavom\\Desktop\\webpage.txt");
+		
+				out.println(page);
+				out.close();
+				file = new parse("C:\\Users\\tavom\\Desktop\\webpage.txt");
+				driver.close();
+				
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+}
