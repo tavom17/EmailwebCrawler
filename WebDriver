@@ -1,0 +1,10 @@
+package scraper;
+
+public class WebDriver {
+	public static void main(String[] args) {
+		
+		webInstance first = new webInstance("https://en.wikipedia.org/wiki/Email_address");
+		first.getHTML();
+		
+	}
+}
